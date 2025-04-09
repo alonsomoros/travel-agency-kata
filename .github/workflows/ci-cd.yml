@@ -25,7 +25,11 @@ jobs:
         run: mvn test
 
       - name: Build Docker Image
-        run: docker build -t albertoortizortega/travel-agency-kata:latest .
+        run: docker build -t alonsomoros/travel-agency-kata:latest .
+
+      - name: Debug secrets (temporal)
+        run:
+          echo "Usuario: ${{ secrets.DOCKER_HUB_USERNAME }}"
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -34,7 +38,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Push Docker Image to Docker Hub
-        run: docker push albertoortizortega/travel-agency-kata:latest
+        run: docker push alonsomoros/travel-agency-kata:latest
 
   deploy:
     environment: poc
@@ -42,4 +46,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Render
-        run: curl https://api.render.com/deploy/srv-cvqpfsp5pdvs738ttvjg?key=1oD2AOwaHWs
+        run: curl https://api.render.com/deploy/srv-cv8v5ctumphs738vgtng?key=7LAwMolPN0Q
