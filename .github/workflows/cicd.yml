@@ -28,7 +28,7 @@ jobs:
         run: docker build -t alonsomoros/travel-agency-kata:latest .
 
       - name: Debug secrets (temporal)
-        run:
+        run: |
           echo "Usuario: ${{ secrets.DOCKER_HUB_USERNAME }}"
 
       - name: Log in to Docker Hub
